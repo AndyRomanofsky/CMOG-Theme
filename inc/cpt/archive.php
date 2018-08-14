@@ -22,7 +22,7 @@ if ( $query_type ) {echo $query_type;
 	//echo "<br>'" .  $post_type_slug ."'<br></div>";
     get_template_part( 'archive-content/archive',  $query_type  );
 	}else{
-   echo "<div class='archive_empty'><h2>Archive</h2><br>Archive items not found<br></div>";
+   echo "<div class='archive_empty'><h2>Archive</h2><br>Archive items not found<br></div>"; 
 	}
 ?>
 <?php get_footer(); ?>
