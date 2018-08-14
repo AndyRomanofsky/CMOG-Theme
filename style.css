@@ -1,0 +1,33 @@
+/*
+Theme Name: CMOG
+Theme URI: http://allaroundcreative.com
+Description: A custom theme created for Church Mother of God
+Version: 0.1.2
+Tags: white, bootstrap, responsive
+*/
+.debug{ 
+color: red;
+background-color: white; 
+}
+
+/*------------------------------------------------------------------
+110b. SMALL DEVICES (tablets, 768px and up)
+-------------------------------------------------------------------*/
+/* Extra small devices (phones, larger than 768px) */
+@media (min-width: 768px) {
+
+}
+
+/*------------------------------------------------------------------
+110c. MEDIUM DEVICES (desktops, 992px and up)
+-------------------------------------------------------------------*/
+@media (min-width: 992px) {
+
+}
+	
+/*------------------------------------------------------------------
+110d. LARGE DEVICES (large desktops, 1200px and up)
+-------------------------------------------------------------------*/
+@media (min-width: 1200px) {
+
+}
