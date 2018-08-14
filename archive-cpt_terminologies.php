@@ -1,28 +1,63 @@
-<?php get_header(); ?>
-<?php 
- $query_type = get_post_type();
+<section class="section-terminologies">
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8"> 
+			<dl class="terminologies-items-wrapper"> 
+			<h1>Terminology</h1>  
+			<?php $cat_title = single_cat_title() ;?>
+			<h2><?php echo  $cat_title;?></h2>
+			<br>
+			<?php echo category_description(); ?> 
+			
 
-  $post_type = get_queried_object();
 
-  $slug = property_exists($post_type,'rewrite' ) ? $post_type->rewrite['slug'] : $post_type->slug;
-  $page = get_page_by_path( $slug , OBJECT , 'page' );
+					<!-- pagination here -->
 
-  if($page) { ?>
-	<div class="container">
-<?php   query_posts('post_type=page&p='.$page->ID); 
-		include get_template_directory() . '/inc/inline_bands.php';
-?>
-	</div >
-<?php  }
-if ( $query_type ) {echo $query_type;
-  wp_reset_query();
-    $post_type_data = get_post_type_object( $query_type );
-   //echo "<div class='archive_empty'><h2>Archive</h2><br>'" . $query_type . "' Archive items found<br>";
-    $post_type_slug = $post_type_data->rewrite['slug'];
-	//echo "<br>'" .  $post_type_slug ."'<br></div>";
-    get_template_part( 'archive-content/archive',  $query_type  );
-	}else{
-   echo "<div class='archive_empty'><h2>Archive</h2><br>Archive items not found<br></div>";
-	}
-?>
-<?php get_footer(); ?>
+					<!-- the loop -->
+					<ul>
+					<?php  while ( have_posts() ) :the_post(); // standard WordPress loop. ?> 
+						<li> <a href="<?php the_permalink(); ?>">
+									<?php the_title(); ?> 
+									</a> <?php the_excerpt(); ?></li>
+					<?php endwhile; ?>
+					</ul>
+					<!-- end of the loop -->
+
+					<!-- pagination here -->
+					<?php	
+					$big = 999999999;
+					?>
+					<div class="pagination">
+						<div class="row">
+							<div class="col-sm-8"><?php 
+								  echo paginate_links( array(
+									'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+									'format' => '?paged=%#%',
+									'current' => max( 1, get_query_var('paged') ),
+									'total' => $wp_query->max_num_pages,
+								) );
+							?>
+							</div>  
+						</div>
+					</div>
+					<?php wp_reset_postdata(); ?>
+
+
+
+			</dl>
+		</div>
+		<div class="col-sm-4">
+			<div class="sidebar">  
+				<div class="widget-container">
+	                <?php
+	                if(is_active_sidebar('terminologies-widget')){
+	                    dynamic_sidebar('terminologies-widget');
+	                }
+	                ?>
+	            </div>
+			</div>
+		</div>
+	</div>
+</div>
+</section> 
+<?php wp_reset_postdata(); ?>
